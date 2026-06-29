@@ -1,70 +1,40 @@
-\# 🏥 Sistema de Clínica Médica - Módulo de Atendimento
+# 🏥 Sistema de Clínica Médica - Microsserviço de Atendimento
 
+## 👥 Integrantes do Grupo e Papéis
+* **Lucas Paris** - Tech Lead / Infra & Gateway (Configuração do Spring Cloud Gateway, Docker, Security JWT)
+* **Joao Gabriel** - Dev Microsserviço Agendamento (Spring Boot + JPA, Lógica de Agendamento)
+* **Lucas Silveira** - Dev Microsserviço Atendimento (Spring Boot + JPA, Prontuário, Anamnese)
+* **Geovani** - Dev Microsserviço Administrativo (Gerenciamento de Funcionários, Médicos, Especialidades, Convênios e validações de dados)
+* **Derlan Silva:** QA, Doc & Testes (Criando Collections no Postman, Documentação com OpenAPI/SpringDoc e Testes Unitários com JUnit)
 
+---
 
-\## 👥 Integrantes do Grupo
+## 📌 Sobre o Subprojeto
+Este é o microsserviço responsável por toda a parte clínica e de cuidados aos pacientes. Gerencia os prontuários eletrônicos, anamneses, registros de consultas passadas, diagnósticos e receitas médicas emitidas.
 
-\* \*\*Lucas Silveira\*\* - (Responsável pelo Módulo de Atendimento)
+### 🛠️ Tecnologias Utilizadas
+* **Java 17** (Linguagem base obrigatória)
+* **Spring Boot 3.5.15** (Framework para criação da API)
+* **Spring Data JPA** (Persistência e comunicação com o banco)
+* **PostgreSQL** (Banco de dados relacional para os atendimentos)
+* **JUnit & Postman** (Ferramentas de testes e validação da API)
+* **YAML (`application.yml`)** (Formato de configuração das propriedades)
 
-\* \*\*João Gabriel\*\* - (Responsável pelo Módulo de Agendamento)
+---
 
-\* \*\*Geovani\*\* - (Responsável pelo Módulo Administrativo)
+## ⚙️ Configuração do Banco de Dados (PostgreSQL)
 
-
-
-\---
-
-
-
-\## 📌 Sobre o Subprojeto
-
-Este módulo é responsável por toda a inteligência e gerenciamento do \*\*Atendimento Médico\*\* da clínica (prontuários, anamnese, registro de sintomas e receitas médicas), funcionando de maneira independente.
-
-
-
-\### 🛠️ Tecnologias Utilizadas
-
-\* \*\*Java 17\*\* (Linguagem principal)
-
-\* \*\*Spring Boot 3.5.x\*\* (Framework do projeto)
-
-\* \*\*Maven\*\* (Gerenciador de dependências)
-
-\* \*\*PostgreSQL\*\* (Banco de dados relacional)
-
-\* \*\*YAML (`application.yml`)\*\* (Formato de configuração)
-
-
-
-\---
-
-
-
-\## ⚙️ Configuração do Banco de Dados
-
-
-
-Para que o módulo funcione localmente, as configurações do PostgreSQL devem ser inseridas no arquivo `src/main/resources/application.yml`:
-
-
+Para rodar este microsserviço localmente, a configuração no arquivo `src/main/resources/application.yml` deve seguir o padrão abaixo:
 
 ```yaml
-
 spring:
-
-&#x20; datasource:
-
-&#x20;   url: jdbc:postgresql://localhost:5432/clinica\_db
-
-&#x20;   username: seu\_usuario
-
-&#x20;   password: sua\_senha
-
-&#x20; jpa:
-
-&#x20;   hibernate:
-
-&#x20;     ddl-auto: update
-
-&#x20;   show-sql: true
-
+  application:
+    name: clinica-atendimento-module
+  datasource:
+    url: jdbc:postgresql://localhost:5432/clinica_atendimento
+    username: postgres
+    password: seu_password_aqui
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
